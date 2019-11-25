@@ -8,7 +8,7 @@ $db = ($GLOBALS["___mysqli_ston"] = mysqli_connect('rti-mysql', 'rti', 'rtipass'
 	die("Unable to connect to database");
 	}
 ##if (!mysql_select_db('spider')) {
-if (!mysqli_select_db($GLOBALS["___mysqli_ston"], "spider"))
+if (!mysqli_select_db($GLOBALS["___mysqli_ston"], "rtidb"))
 {
 	die("Unable to access spider database");
 	}
