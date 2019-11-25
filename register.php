@@ -28,7 +28,7 @@ if (isset($_POST['signup'])) {
 	$email = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_POST['email']);
 	$password = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_POST['password']);
 	$cpassword = mysqli_real_escape_string($GLOBALS["___mysqli_ston"], $_POST['cpassword']);
-	
+
 	//name can contain only alpha characters and space
 	if (!preg_match("/^[a-zA-Z ]+$/",$name)) {
 		$error = true;
@@ -58,16 +58,7 @@ if (isset($_POST['signup'])) {
 ## validate
 $curl = curl_init();
 
-// Configure options, incl. post-variables to send.
-curl_setopt_array($curl, array(
-    CURLOPT_RETURNTRANSFER => 1,
-    CURLOPT_URL => 'https://www.google.com/recaptcha/api/siteverify',
-    CURLOPT_POST => 1,
-    CURLOPT_POSTFIELDS => array(
-        'secret' => 'XXXXXXXXXXXXXXXXXXXXXXX',
-        'response' => $_POST['g-recaptcha-response']
-    )
-));
+
 
 // Send request. Due to CURLOPT_RETURNTRANSFER, this will return reply as string.
 $resp = curl_exec($curl);
@@ -86,7 +77,7 @@ if(strpos($resp, '"success": true') !== FALSE) {
 			$errormsg = "Error in registering...Please try again later!";
 		}
 
-} 
+}
 
 }
 ?>
@@ -98,7 +89,7 @@ if(strpos($resp, '"success": true') !== FALSE) {
 	<meta content="width=device-width, initial-scale=1.0" name="viewport" >
 	<link rel="stylesheet" href="css/bootstrap.min.css" type="text/css" />
 	<link rel="stylesheet" type="text/css" href="https://overpass-30e2.kxcdn.com/overpass.css"/>
-   <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+
 <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
@@ -138,7 +129,7 @@ if(strpos($resp, '"success": true') !== FALSE) {
 						<input type="text" name="name" placeholder="Enter Full Name" required value="<?php if($error) echo $name; ?>" class="form-control" />
 						<span class="text-danger"><?php if (isset($name_error)) echo $name_error; ?></span>
 					</div>
-					
+
 					<div class="form-group">
 						<label for="name">Username</label>
 						<input type="text" name="email" placeholder="Username" required value="<?php if($error) echo $email; ?>" class="form-control" />
@@ -171,7 +162,7 @@ if(strpos($resp, '"success": true') !== FALSE) {
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-md-4 col-md-offset-4 text-center">	
+		<div class="col-md-4 col-md-offset-4 text-center">
 		Already Registered? <a href="login.php">Login Here</a>
 		</div>
 	</div>
@@ -180,6 +171,3 @@ if(strpos($resp, '"success": true') !== FALSE) {
 <script src="js/bootstrap.min.js"></script>
 </body>
 </html>
-
-
-
