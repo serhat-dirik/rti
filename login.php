@@ -14,7 +14,8 @@ connectDB();
 
 	$email = $_POST['email'];
 	$password = $_POST['password'];
-	$result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
+	//$result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . md5($password) . "'");
+	$result = mysqli_query($GLOBALS["___mysqli_ston"], "SELECT * FROM users WHERE email = '" . $email. "' and password = '" . $password . "'");
 
 	if ($row = mysqli_fetch_array($result)) {
 		$_SESSION['usr_id'] = $row['id'];
@@ -65,9 +66,9 @@ connectDB();
 			<form role="form" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="loginform">
 				<fieldset>
 					<legend>Login</legend>
-					
+
 					<div class="form-group">
-						<label for="name">Username</label>
+						<label for="name">Email</label>
 						<input type="text" name="email" placeholder="Your Username" required class="form-control" />
 					</div>
 
